@@ -1,17 +1,12 @@
-#include "led.h"
-#include "delay.h"
-#include "key.h"
 #include "sys.h"
-#include "usart.h"
+#include "delay.h"
 #include "timer.h"
-
-
 #define SERVO_INIT 1500
 #define K 622.8f
-/************************+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*************************************************
-�������ܣ�С����ѧģ��
-��ڲ������ٶȺ�ת��
-����ֵ����
+/*************************************************************************
+函数功能：小车数学模型
+入口参数：速度和转角
+返回值：无
 *************************************************************************/
 int delay_time = 2000;
 float Servo = 0;
@@ -22,28 +17,21 @@ void Kinematic_Analysis(float velocity,float angle)
  int main(void)
  {		
 	delay_init();
-  Servo_PWM_Init(19999,71);	    //��ʼ��PWM50HZ(20ms)������� 
+        Servo_PWM_Init(19999,71);	    //初始化PWM50HZ(20ms)驱动舵机 
 	while(1)
 	{
-		Kinematic_Analysis(30,-0.3);  //����������ת25��CCR1��ֵ
-		TIM1->CCR1= Servo;          //���ƶ��ת��
-//		TIM_SetCompare1(TIM1,Servo);          //���ƶ��ת��
-		delay_ms(delay_time);       //��ʱ����ʱʱ����Ҫʵ�ʵ���
-		TIM1->CCR1= SERVO_INIT;     //�����λ
-		delay_ms(delay_time);       //��ʱ����ʱʱ����Ҫʵ�ʵ���
-//		TIM_SetCompare1(TIM1,SERVO_INIT);
-		Kinematic_Analysis(30,0.75); //����������ת45��CCR1��ֵ
-		TIM1->CCR1= Servo;          //���ƶ��ת��
-//		TIM_SetCompare1(TIM1,Servo);
+		Kinematic_Analysis(30,-0.3); //计算舵机向右转25°CCR1的值
+		TIM1->CCR1= Servo;          //控制舵机转动
+		delay_ms(delay_time);       //延时，延时时间需要实际调试
+		TIM1->CCR1= SERVO_INIT;     //舵机复位
+		delay_ms(delay_time);       //延时，延时时间需要实际调试
+		Kinematic_Analysis(30,0.75); //计算舵机向左转45°CCR1的值
+		TIM1->CCR1= Servo;          //控制舵机转动
 		delay_ms(delay_time);
-		TIM1->CCR1= SERVO_INIT;     //�����λ
-		delay_ms(delay_time);       //��ʱ����ʱʱ����Ҫʵ�ʵ���
+		TIM1->CCR1= SERVO_INIT;     //舵机复位
+		delay_ms(delay_time);       //延时，延时时间需要实际调试
 
-	}
-
-	 
-	 
-	 
+	}	  
  }
 
  

@@ -1,38 +1,37 @@
 #include "stm32f10x.h"
 #include "sys.h"
 
-
-//µç»úPWM±äÁ¿
+//ç”µæœºPWMå˜é‡
 long int Motor_Left = 0;
 long int Motor_Right = 0;
-//°´Ñ¹´ÎÊı
+//æŒ‰å‹æ¬¡æ•°
 int times = 0;	                      
 
 int main(void)
 {		
-		//=====³õÊ¼»¯PWM 10KHZ£¬ÓÃÓÚÇı¶¯µç»ú 
+		//=====åˆå§‹åŒ–PWM 10KHZï¼Œç”¨äºé©±åŠ¨ç”µæœº 
 		MiniBalance_PWM_Init(7199,0);
 	
-		// °´¼ü³õÊ¼»¯ÅäÖÃ
+		// æŒ‰é”®åˆå§‹åŒ–é…ç½®
 		KEY_Init();
 		
 		Xianfu_Pwm(7000);
 		while(1)
 		{
-			//¼ì²âÊÇ·ñÓĞ°´¼ü°´ÏÂ
+			//æ£€æµ‹æ˜¯å¦æœ‰æŒ‰é”®æŒ‰ä¸‹
 			if (KEY==0)                    
 			{
 				times++;
-				//¿ØÖÆ×óÂÖµç»úÕı×ª	
+				//æ§åˆ¶å·¦è½®ç”µæœºæ­£è½¬	
 				if (KEY == KEY_DN && times == 1)  
 				{	 
-						//µÈ´ı°´¼üÊÍ·Å
+						//ç­‰å¾…æŒ‰é”®é‡Šæ”¾
 						while(KEY == KEY_DN)         
 						Motor_Left = -2000;
 						Motor_Right = 0;        
 				}				
 				
-				//¿ØÖÆ×óÓÒÂÖµç»úÕı×ª
+				//æ§åˆ¶å·¦å³è½®ç”µæœºæ­£è½¬
 				else if(KEY == KEY_DN && times == 2)
 				{
 						while(KEY == KEY_DN)
@@ -40,7 +39,7 @@ int main(void)
 						Motor_Right = -2000;          
 				}
 					
-				//¿ØÖÆ×óÓÒÂÖµç»ú·´×ª
+				//æ§åˆ¶å·¦å³è½®ç”µæœºåè½¬
 				else if(KEY == KEY_DN && times == 3)
 				{
 						while (KEY == KEY_DN)
@@ -48,7 +47,7 @@ int main(void)
 						Motor_Right = 2000;
 				}                             
 			
-				//¿ØÖÆ×óÓÒÂÖµç»úÍ£Ö¹
+				//æ§åˆ¶å·¦å³è½®ç”µæœºåœæ­¢
 				else if(KEY == KEY_DN && times == 4)
 				{
 						while (KEY == KEY_DN)
@@ -57,7 +56,7 @@ int main(void)
 						times = 0;
 				}				                      
 		}
-		//µç»úPWM¸³Öµ
+		//ç”µæœºPWMèµ‹å€¼
 		Set_Pwm(Motor_Left,Motor_Right);
 	}
 }

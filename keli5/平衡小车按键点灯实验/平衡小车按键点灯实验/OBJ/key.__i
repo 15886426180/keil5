@@ -1,0 +1,6 @@
+-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I ..\USER -I ..\SYSTEM\delay -I ..\SYSTEM\sys -I ..\SYSTEM\usart -I ..\FWLIB\inc -I ..\CORE -I .\BELL -I .\KEY -I .\LED
+-I F:\大学学习资料\机器人嵌入式设计\机器人嵌入式设计实践\平衡小车按键点灯实验\USER\RTE
+-I D:\keil5\K5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include
+-I D:\keil5\K5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include
+-D__UVISION_VERSION="518" -D_RTE_ -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD
+-o ..\obj\key.o --omf_browse ..\obj\key.crf --depend ..\obj\key.d "KEY\key.c"

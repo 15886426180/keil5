@@ -1,0 +1,6 @@
+--cpu Cortex-M3 -g --apcs=interwork 
+-I F:\大学学习资料\机器人嵌入式设计\机器人嵌入式设计实践\平衡小车按键点灯实验\USER\RTE
+-I D:\keil5\K5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include
+-I D:\keil5\K5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include
+--pd "__UVISION_VERSION SETA 518" --pd "_RTE_ SETA 1" --pd "STM32F10X_HD SETA 1"
+--list ..\obj\startup_stm32f10x_hd.lst --xref -o ..\obj\startup_stm32f10x_hd.o --depend ..\obj\startup_stm32f10x_hd.d "..\CORE\startup_stm32f10x_hd.s"

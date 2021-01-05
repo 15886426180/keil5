@@ -23,6 +23,6 @@
 //void TIM_Init(void);
 
 #define SERVO  TIM1->CCR1
-void Kinematic_Analysis(float velocity,float angle);
+void Kinematic_Analysis(float angle);
 void Servo_PWM_Init(u16 arr,u16 psc);
 #endif
